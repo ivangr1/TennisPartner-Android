@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ProgressBar
+        android:id="@+id/inbox_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/empty_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:text="@string/no_chats_available"
+        android:visibility="gone" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_layout_group_channel_list"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recycler_group_channel_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</FrameLayout>

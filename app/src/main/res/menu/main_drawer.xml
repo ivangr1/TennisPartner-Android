@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/grp1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/partner"
+            android:icon="@drawable/ic_squash_rackets"
+            android:title="@string/partner_activity_title" />
+        <item
+            android:id="@+id/courts"
+            android:icon="@drawable/ic_tennis_court"
+            android:title="@string/title_activity_court" />
+    </group>
+    <group
+        android:id="@+id/grp2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/inbox"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/chat_list_title" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout" />
+    </group>
+</menu>

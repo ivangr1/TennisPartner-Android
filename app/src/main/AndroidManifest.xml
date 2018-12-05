@@ -1,44 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ivangr.tennispartner">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:name=".TennisPartner"
         android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <meta-data android:name="com.facebook.accountkit.ApplicationName"
-            android:value="@string/app_name" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/FACEBOOK_APP_ID" />
-        <meta-data android:name="com.facebook.accountkit.ClientToken"
-            android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.com.vansuita.pickimage.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/picker_provider_paths" />
+        </provider>
 
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".LoginContinueActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".PartnerActivity"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.facebook.accountkit.ui.AccountKitActivity" />
-        <activity android:name=".MainActivity">
+            android:name=".UserDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".CourtActivity"
+            android:label="@string/title_activity_court"
+            android:parentActivityName=".PartnerActivity"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".GroupChatActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".helper.PhotoViewerActivity" />
+        <activity
+            android:name=".helper.InviteMemberActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".helper.MemberListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ChatListActivity" />
+
+        <service android:name=".helper.FirebaseInstanceIdService">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="myapp" android:host="main" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </activity>
+        </service>
     </application>
 
 </manifest>

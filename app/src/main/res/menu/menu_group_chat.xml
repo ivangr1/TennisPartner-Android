@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/group_chat_schedule"
+        android:icon="@drawable/ic_event_black_24dp"
+        android:title="@string/group_chat_schedule"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_group_channel_view_members"
+        android:title="@string/view_members"
+        android:orderInCategory="10"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_group_channel_invite"
+        android:title="@string/invite_members"
+        android:orderInCategory="20"
+        app:showAsAction="never" />
+
+</menu>

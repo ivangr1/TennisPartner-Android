@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout2"
+    android:id="@+id/welcome_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@android:color/holo_blue_bright"
-    tools:showIn="@layout/activity_welcome">
+    tools:background="@android:color/holo_blue_bright">
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/horizontal"
+        android:id="@+id/horizontalLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_thickness"
         android:layout_marginBottom="270dp"
@@ -28,26 +27,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/vertical"
+        android:id="@+id/verticalLine"
         android:layout_width="@dimen/line_thickness"
         android:layout_height="0dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@id/horizontal"
+        app:layout_constraintBottom_toTopOf="@id/horizontalLine"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/serviceline"
+        android:id="@+id/serviceLine"
         android:layout_width="@dimen/line_thickness"
         android:layout_height="20dp"
         android:background="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@id/baseline"
+        app:layout_constraintBottom_toTopOf="@id/baseLine"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <View
-        android:id="@+id/baseline"
+        android:id="@+id/baseLine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_thickness"
         android:background="@android:color/white"
@@ -68,8 +67,8 @@
         android:id="@+id/prijava"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:onClick="phoneLogin"
-        android:text="@string/login_button"
+        android:onClick="goToPartnerActivity"
+        android:text="@string/welcome_button"
         app:layout_constraintBottom_toBottomOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

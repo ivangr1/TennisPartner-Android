@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/content_partner_main"
+    android:id="@+id/empty_location"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:visibility="gone">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:text="@string/no_location_warning" />
+
+    <Button
+        android:id="@+id/ask_location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/ask_location_button" />
+</LinearLayout>
