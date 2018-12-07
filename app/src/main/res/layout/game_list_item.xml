@@ -7,7 +7,7 @@
 
         <variable
             name="game"
-            type="com.ivangr.tennispartner.models.Game" />
+            type="app.tennispartner.tennispartner.models.Game" />
     </data>
 
     <FrameLayout

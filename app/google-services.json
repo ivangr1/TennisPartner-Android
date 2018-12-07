@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:49503866744:android:e5fae72fafafcb27",
         "android_client_info": {
-          "package_name": "com.ivangr.tennispartner"
+          "package_name": "app.tennispartner.tennispartner"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "49503866744-f32ofb51ln9buu43qoalt4prbn7th54s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ivangr.tennispartner",
+            "package_name": "app.tennispartner.tennispartner",
             "certificate_hash": "a8078eef873a3d266731f8d14365b78ef43b2116"
           }
         },
