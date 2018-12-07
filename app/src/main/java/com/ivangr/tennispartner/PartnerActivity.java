@@ -247,7 +247,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         navigationView.setCheckedItem(R.id.partner);
 
         String photoUrl = null;
-        int photoInt = R.drawable.user;
+        int photoInt = R.drawable.ic_user;
         String displayName = getString(R.string.login_text);
         hView.setOnClickListener(new View.OnClickListener() {
             @Override

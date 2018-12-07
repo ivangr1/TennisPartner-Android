@@ -73,7 +73,7 @@
                     android:text="@string/user_detail_info"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Overline" />
 
-                <com.google.android.material.card.MaterialCardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -162,7 +162,7 @@
                                 tools:text="Pula, Croatia" />
                         </LinearLayout>
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/user_detail_lastmatches"

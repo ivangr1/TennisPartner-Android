@@ -79,7 +79,7 @@ public class LoginContinueActivity extends AppCompatActivity implements IPickRes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        //setContentView(R.layout.activity_login);
 
         AndroidThreeTen.init(this);
         mBirthday = LocalDate.now();
@@ -90,7 +90,7 @@ public class LoginContinueActivity extends AppCompatActivity implements IPickRes
                 .build();
         firestore.setFirestoreSettings(settings);
 
-        // Set up the login form.
+      /*  // Set up the login form.
         mUploadProgress = findViewById(R.id.upload_progress);
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.loading_view);
@@ -109,12 +109,8 @@ public class LoginContinueActivity extends AppCompatActivity implements IPickRes
         // Regular login button
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener((view) -> {
-            try {
-                login();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+            login();
+        });*/
 
         // Date picker
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -309,7 +305,7 @@ public class LoginContinueActivity extends AppCompatActivity implements IPickRes
                 .setCameraButtonText(getResources().getString(R.string.camera_dialog_camera))
                 .setGalleryButtonText(getResources().getString(R.string.camera_dialog_gallery));
         //
-        PickImageDialog.build(setup).show(this);
+        //PickImageDialog.build(setup).show(this);
     }
 
     @Override

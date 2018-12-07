@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.stfalcon:multiimageview-0.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/multiimageview-0.1.aar/997e825cec9bee98d32e5e15b930c148/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/multiimageview-0.1.aar/997e825cec9bee98d32e5e15b930c148/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.stfalcon/multiimageview/0.1/4c90ab410d14a0167af31fb641d33efdc8ef6ece/multiimageview-0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

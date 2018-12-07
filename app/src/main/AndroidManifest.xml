@@ -14,8 +14,8 @@
     <application
         android:theme="@style/AppTheme"
         android:label="@string/app_name"
+        android:name="TennisPartner"
         android:icon="@mipmap/ic_launcher"
-        android:name="com.ivangr.tennispartner.TennisPartner"
         android:allowBackup="true"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
@@ -23,83 +23,52 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:theme="@style/AppTheme_NoActionBar"
-            android:name="com.ivangr.tennispartner.LoginContinueActivity" />
-
-        <activity
-            android:theme="@style/AppTheme_NoActionBar"
-            android:label="@string/app_name"
-            android:name="com.ivangr.tennispartner.PartnerActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/partner_activity_title"
+            android:name=".PartnerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:theme="@style/AppTheme_NoActionBar"
-            android:name="com.ivangr.tennispartner.UserDetailActivity" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
 
         <activity
             android:theme="@style/AppTheme"
             android:label="@string/title_activity_court"
-            android:name="com.ivangr.tennispartner.CourtActivity"
-            android:parentActivityName="com.ivangr.tennispartner.PartnerActivity" />
-        <activity
-            android:theme="@style/AppTheme_NoActionBar"
-            android:name="com.ivangr.tennispartner.GroupChatActivity" />
-        <activity android:name="com.ivangr.tennispartner.helper.PhotoViewerActivity" />
-        <activity
-            android:theme="@style/AppTheme_NoActionBar"
-            android:name="com.ivangr.tennispartner.helper.InviteMemberActivity" />
-        <activity
-            android:theme="@style/AppTheme_NoActionBar"
-            android:name="com.ivangr.tennispartner.helper.MemberListActivity" />
-        <activity android:name="com.ivangr.tennispartner.ChatListActivity" />
+            android:name=".CourtActivity"
+            android:parentActivityName=".PartnerActivity" />
 
-        <service android:name="com.ivangr.tennispartner.helper.FirebaseInstanceIdService">
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".LoginContinueActivity" />
+
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".UserDetailActivity" />
+
+        <!-- Chat activities -->
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".GroupChatActivity" />
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".ChatListActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".helper.InviteMemberActivity" />
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".helper.MemberListActivity" />
+
+        <service android:name=".helper.FirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:enabled="true"
-            android:exported="false" />
-
-        <receiver
-            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </receiver>
-        <service
-            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
-            android:exported="true">
-            <intent-filter android:priority="-500">
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
-
-        <provider
-            android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:exported="false"
-            android:authorities="com.ivangr.tennispartner.firebaseinitprovider"
-            android:initOrder="100" />
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
     </application>
 </manifest>
