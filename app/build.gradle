@@ -12,6 +12,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         // Optional: Specify the language(s) your app supports.
         resConfigs "en", "hr", "pt-rBR"
+        vectorDrawables.useSupportLibrary = true
     }
     dataBinding {
         enabled = true;

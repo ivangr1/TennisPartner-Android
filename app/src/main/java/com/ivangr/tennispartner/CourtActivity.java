@@ -157,7 +157,7 @@ public class CourtActivity extends AppCompatActivity implements OnMapReadyCallba
             });
         }
     }*/
-    private static final float DEFAULT_ZOOM = 13.5f;
+    private static final float DEFAULT_ZOOM = 13f;
 
     private double radius = 20;
     private GeoFirestore geoFirestore;

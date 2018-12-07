@@ -24,7 +24,7 @@
 
         <activity
             android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/partner_activity_title"
+            android:label="@string/app_name"
             android:name=".PartnerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
