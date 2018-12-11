@@ -111,6 +111,13 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner);
 
+        currentUser = mAuth.getCurrentUser();
+
+        // If the user got out of LoginActivity without finishing, redirect him back
+        if (currentUser != null && (currentUser.getDisplayName() == null || currentUser.getDisplayName().isEmpty())) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
         firestore = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setTimestampsInSnapshotsEnabled(true)
@@ -145,8 +152,6 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         hView = navigationView.getHeaderView(0);
         nav_header_avatar = hView.findViewById(R.id.nav_header_avatar);
         nav_header_name = hView.findViewById(R.id.nav_header_name);
-
-        currentUser = mAuth.getCurrentUser();
 
         // Get currentUser location
         if (isGooglePlayServicesAvailable(this)) {

@@ -47,10 +47,10 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_wrong_data">Full name not enetered correct</string>
     <string name="set">Choose</string>
-    <string name="birthday">Birthday</string>
+    <string name="login_birthday">Birthday</string>
     <string name="gender_female">Female</string>
     <string name="gender_male">Male</string>
-    <string name="textInputName">Full name</string>
+    <string name="login_full_name">Full name</string>
     <string name="continue_login">Continue</string>
     <string name="loginSeparator_text">or</string>
     <string name="loginDescription">We need a few more details about you in order to sign you in</string>
@@ -87,4 +87,12 @@
 
     <string name="facebook_application_id" translatable="false">907216152811840</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb907216152811840</string>
+
+    <string name="title_activity_login">Enter your info</string>
+    <!-- Strings related to login -->
+    <string name="error_not_full_name">You need to enter your full name</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing name
+        completions."
+    </string>
+    <string name="image_select_title">Select image</string>
 </resources>

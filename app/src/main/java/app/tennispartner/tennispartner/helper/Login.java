@@ -44,7 +44,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import app.tennispartner.tennispartner.BuildConfig;
-import app.tennispartner.tennispartner.LoginContinueActivity;
+import app.tennispartner.tennispartner.LoginActivity;
 import app.tennispartner.tennispartner.R;
 import app.tennispartner.tennispartner.models.User;
 import com.sendbird.android.SendBird;
@@ -85,7 +85,9 @@ public class Login {
         if (Helper.isGooglePlayServicesAvailable((Activity) context))
             ((Activity) context).startActivityForResult(AuthUI.getInstance()
                     .createSignInIntentBuilder()
-                    .setTheme(R.style.LoginTheme)
+                    .setTosAndPrivacyPolicyUrls(
+                            "https://tennispartner.app/tos.html",
+                            "https://tennispartner.app/privacy-policy.html")
                     .setLogo(R.drawable.ic_squash_rackets)
                     .setAvailableProviders(loginProviderList(context))
                     .setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */)
@@ -137,7 +139,7 @@ public class Login {
                 if (metadata.getCreationTimestamp() == metadata.getLastSignInTimestamp()) {
 
                     if (currentUser.getPhoneNumber() != null) {
-                        ((Activity) context).startActivityForResult(new Intent(context, LoginContinueActivity.class), RC_SIGN_IN_CONTINUE);
+                        ((Activity) context).startActivityForResult(new Intent(context, LoginActivity.class), RC_SIGN_IN_CONTINUE);
                     } else {
 
                         // Create a new user with a first and last name
@@ -222,68 +224,65 @@ public class Login {
                                 AsyncTask<Void, Void, Person> task = new AsyncTask<Void, Void, Person>() {
                                     @Override
                                     protected Person doInBackground(Void... params) {
+                                        Person person = null;
                                         try {
-                                            GoogleAccountCredential credential =
-                                                    GoogleAccountCredential.usingOAuth2(
-                                                            context,
-                                                            googleScope
-                                                    );
-                                            credential.setSelectedAccount(account.getAccount());
-                                            PeopleService service = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-                                                    .setApplicationName("TennisPartner")
-                                                    .build();
-                                            return service.people().get("people/me").setPersonFields("birthdays,genders").execute();
-
-                                        } /*catch (UserRecoverableAuthIOException userRecoverableException) {
-                                        // Explain to the user again why you need these OAuth permissions
-                                        // And prompt the resolution to the user again:
-                                        startActivityForResult(userRecoverableException.getIntent(),RC_REAUTHORIZE);
-                                    }*/ catch (IOException e) {
+                                            GoogleAccountCredential credential = GoogleAccountCredential.usingOAuth2(context, googleScope);
+                                            if (account != null) {
+                                                credential.setSelectedAccount(account.getAccount());
+                                            }
+                                            PeopleService service = new PeopleService.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).build();
+                                            person = service.people().get("people/me").setPersonFields("birthdays,genders").execute();
+                                        } catch (IOException e) {
                                             // Other non-recoverable exceptions.
                                             e.printStackTrace();
                                         }
-
-                                        return null;
+                                        return person;
                                     }
 
                                     @Override
                                     protected void onPostExecute(Person person) {
-                                        List<Gender> genders = person.getGenders();
-                                        if (genders != null && genders.size() > 0) {
-                                            user.put("gender", genders.get(0).getValue());
-                                        }
-                                        List<Birthday> birthdays = person.getBirthdays();
-                                        if (birthdays != null && birthdays.size() > 0) {
-                                            Date b = birthdays.get(0).getDate();
-                                            String birthday = b.getMonth() + "/" + b.getDay() + "/" + b.getYear();
-                                            user.put("birthday", birthday);
-                                        }
-                                        final String avatarUrl = currentUser.getPhotoUrl() + "=s300";
-                                        user.put("provider", provider);
-                                        // UID specific to the provider
-                                        user.put("providerId", providerId);
-                                        user.put("avatarUrl", avatarUrl);
-                                        firestore.collection("users").document(currentUser.getUid()).set(user)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        SendBird.updateCurrentUserInfo(fullName[0], avatarUrl, new SendBird.UserInfoUpdateHandler() {
-                                                            @Override
-                                                            public void onUpdated(SendBirdException e) {
-                                                                if (e != null) {    // Error.
-                                                                    return;
+                                        if (person != null) {
+                                            List<Gender> genders = person.getGenders();
+                                            if (genders != null && genders.size() > 0) {
+                                                user.put("gender", genders.get(0).getValue());
+                                            } else {
+                                                user.put("gender", "-");
+                                            }
+                                            List<Birthday> birthdays = person.getBirthdays();
+                                            if (birthdays != null && birthdays.size() > 0) {
+                                                Date b = birthdays.get(0).getDate();
+                                                String birthday = b.getMonth() + "/" + b.getDay() + "/" + b.getYear();
+                                                user.put("birthday", birthday);
+                                            }
+                                            final String avatarUrl = currentUser
+                                                    .getPhotoUrl()
+                                                    .toString().replaceAll("[swh][0-9]{1,5}-[cp]", "s300-c");
+                                            user.put("provider", provider);
+                                            // UID specific to the provider
+                                            user.put("providerId", providerId);
+                                            user.put("avatarUrl", avatarUrl);
+                                            firestore.collection("users").document(currentUser.getUid()).set(user)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            SendBird.updateCurrentUserInfo(fullName[0], avatarUrl, new SendBird.UserInfoUpdateHandler() {
+                                                                @Override
+                                                                public void onUpdated(SendBirdException e) {
+                                                                    if (e != null) {    // Error.
+                                                                        return;
+                                                                    }
+                                                                    ((Activity) context).recreate();
                                                                 }
-                                                                ((Activity) context).recreate();
-                                                            }
-                                                        });
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Log.w(context.getClass().getSimpleName(), "Error writing document", e);
-                                                    }
-                                                });
+                                                            });
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Log.w(context.getClass().getSimpleName(), "Error writing document", e);
+                                                        }
+                                                    });
+                                        }
                                     }
                                 };
                                 task.execute();

@@ -3,11 +3,11 @@
     <string name="app_name">Tenis Partner</string>
     <string name="loginSeparator_text">ili</string>
     <string name="continue_login">Nastavak</string>
-    <string name="textInputName">Ime i prezime</string>
+    <string name="login_full_name">Ime i prezime</string>
     <string name="gender_male">Muškarac</string>
     <string name="gender_female">Žena</string>
     <string name="loginDescription">Potrebno nam je još malo informacija o vama kako bi se mogli registrirati</string>
-    <string name="birthday">Datum rođenja</string>
+    <string name="login_birthday">Datum rođenja</string>
     <string name="cancel">Natrag</string>
     <string name="set">Izaberi</string>
     <string name="error_wrong_data">Ime i prezime pogrešno uneseno</string>
@@ -83,4 +83,8 @@
     <string name="partner_radius">partner_radius</string>
     <string name="navigation_drawer_close">Zatvori ladicu navigacije</string>
     <string name="navigation_drawer_open">Otvori ladicu navigacije</string>
+    <string name="permission_rationale">Pristup kontaktima je potreban za automatsko ispunjavanje polja sa imenom</string>
+    <string name="error_not_full_name">Morate unijeti puno ime i prezime</string>
+    <string name="title_activity_login">Unesite Vaše podatke</string>
+    <string name="image_select_title">Izaberite sliku</string>
 </resources>
