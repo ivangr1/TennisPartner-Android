@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
@@ -175,7 +177,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
             Image image = ImagePicker.getFirstImageOrNull(data);
-            mLoginAvatar.setImageURI(Uri.parse(image.getPath()));
+            Glide.with(this)
+                    .load(image.getPath())
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(mLoginAvatar);
             avatarPath = image.getPath();
         }
         super.onActivityResult(requestCode, resultCode, data);

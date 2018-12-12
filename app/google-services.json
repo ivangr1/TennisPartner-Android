@@ -15,54 +15,18 @@
       },
       "oauth_client": [
         {
+          "client_id": "49503866744-bq8tmp1dgp6p7ncj3jo49lr4e093lk6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tennispartner.tennispartner",
+            "certificate_hash": "30c10914550f4203431125407dd3a3b906c9dc8d"
+          }
+        },
+        {
           "client_id": "49503866744-rh0ntub1kqrgp2s3kl00eacelt50pha9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "app.tennispartner.tennispartner",
-            "certificate_hash": "a8078eef873a3d266731f8d14365b78ef43b2116"
-          }
-        },
-        {
-          "client_id": "49503866744-m5crbgdl9iftvivtb62dtmle853i1isd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCmbvLULP9YYLvWb2frJXg0Qd_h_wBZlDY"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "49503866744-m5crbgdl9iftvivtb62dtmle853i1isd.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:49503866744:android:e5fae72fafafcb27",
-        "android_client_info": {
-          "package_name": "com.ivangr.tennispartner"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "49503866744-f32ofb51ln9buu43qoalt4prbn7th54s.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ivangr.tennispartner",
             "certificate_hash": "a8078eef873a3d266731f8d14365b78ef43b2116"
           }
         },

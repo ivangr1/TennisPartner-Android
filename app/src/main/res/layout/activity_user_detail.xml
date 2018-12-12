@@ -51,6 +51,8 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
+        <include layout="@layout/loading_view" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/user_detail_container"
             android:layout_width="match_parent"
