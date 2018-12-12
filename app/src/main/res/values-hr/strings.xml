@@ -87,4 +87,7 @@
     <string name="error_not_full_name">Morate unijeti puno ime i prezime</string>
     <string name="title_activity_login">Unesite Vaše podatke</string>
     <string name="image_select_title">Izaberite sliku</string>
+    <string name="about_app">O aplikaciji</string>
+    <string name="app_developer">Programer aplikacije</string>
+    <string name="about_developer">Android i Java programer iz Pule</string>
 </resources>

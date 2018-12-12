@@ -356,6 +356,10 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
                     });
         }
 
+        if (id == R.id.about) {
+            startActivity(new Intent(this, InfoActivity.class));
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawers();
         return true;

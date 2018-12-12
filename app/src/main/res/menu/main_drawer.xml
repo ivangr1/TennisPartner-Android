@@ -24,4 +24,12 @@
             android:icon="@drawable/ic_logout"
             android:title="@string/logout" />
     </group>
+    <group
+        android:id="@+id/grp3"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_info"
+            android:title="@string/about_app" />
+    </group>
 </menu>

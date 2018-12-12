@@ -60,6 +60,7 @@
         <activity
             android:name=".helper.MemberListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".InfoActivity" />
 
         <service android:name=".helper.FirebaseInstanceIdService">
             <intent-filter>
@@ -70,6 +71,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
     </application>
 
 </manifest>
