@@ -36,6 +36,7 @@
         android:textStyle="italic"
         android:gravity="center"
         android:textColor="@android:color/darker_gray"
-        android:text="@string/loading_text" />
+        android:text="@string/loading_text_search_players" />
+
 
 </LinearLayout>

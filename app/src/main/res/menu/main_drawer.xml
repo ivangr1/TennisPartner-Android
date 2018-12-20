@@ -28,6 +28,10 @@
         android:id="@+id/grp3"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/invite_friends"
+            android:icon="@drawable/ic_share"
+            android:title="@string/invite_friends" />
+        <item
             android:id="@+id/about"
             android:icon="@drawable/ic_info"
             android:title="@string/about_app" />

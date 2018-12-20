@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tenis Partner</string>
     <string name="loginSeparator_text">ili</string>
     <string name="continue_login">Nastavak</string>
     <string name="login_full_name">Ime i prezime</string>
@@ -62,7 +61,7 @@
     <string name="suggest_match_date">Predloži datum meča</string>
     <string name="suggest_match_time">Predloži vrijeme meča</string>
     <string name="court_title">Izaberite teren</string>
-    <string name="loading_text">Molimo pričekajte…</string>
+    <string name="loading_text_search_players">Molimo pričekajte…</string>
     <string name="ask_location_button">Dopusti</string>
     <string name="no_location_warning">Trebamo pristup vašoj lokaciji kako bi vam mogli pronaći partnere u blizini</string>
     <string name="reload_button">Ponovno učitaj</string>
@@ -90,4 +89,15 @@
     <string name="about_app">O aplikaciji</string>
     <string name="app_developer">Programer aplikacije</string>
     <string name="about_developer">Android i Java programer iz Pule</string>
+    <string name="app_name">Tenis Partner</string>
+    <string name="share_cta">Pozovi svoje prijatelje</string>
+    <string name="invite_friends">Pozovi prijatelje</string>
+    <string name="icon_attribution">Ikone ustupa <a href="https://www.freepik.com/">Freepik</a> od <a href="https://www.flaticon.com/">www.flaticon.com</a> sa licencom <a href="http://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></string>
+    <string name="share_more">Više opcija</string>
+    <string name="invitation_sent_toast">Poziv uspješno poslan!</string>
+    <string name="share_link_copied">Poveznica kopirana</string>
+    <string name="share_link">Kopiraj poveznicu</string>
+    <string name="share_whatsapp">Putem WhatsApp-a</string>
+    <string name="share_smsmail">Putem SMS-a i email-a</string>
+    <string name="share_facebook">Putem Facebook-a</string>
 </resources>

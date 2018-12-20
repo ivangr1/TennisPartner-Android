@@ -4,7 +4,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.vansuita.materialabout.builder.AboutBuilder;
 import com.vansuita.materialabout.views.AboutView;
@@ -14,7 +18,8 @@ public class InfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
         AboutView view = AboutBuilder.with(this)
                 .setPhoto(R.mipmap.profile_picture)
                 .setCover(R.mipmap.profile_cover)
@@ -34,7 +39,21 @@ public class InfoActivity extends AppCompatActivity {
                 .setLinksAnimated(true)
                 .build();
 
-        setContentView(view);
+        linearLayout.addView(view);
+
+        TextView attributions = new TextView(this);
+        attributions.setText(R.string.icon_attribution);
+        attributions.setGravity(Gravity.CENTER_HORIZONTAL);
+        attributions.setMovementMethod(LinkMovementMethod.getInstance());
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(30, 10, 30, 10);
+        attributions.setLayoutParams(params);
+
+        linearLayout.addView(attributions);
+
+        setContentView(linearLayout);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             getSupportActionBar().setTitle(R.string.about_app);

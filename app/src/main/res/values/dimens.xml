@@ -8,4 +8,8 @@
     <dimen name="user_detail_margin">10dp</dimen>
     <dimen name="avatar_game_list_size">20dp</dimen>
     <dimen name="avatar_game_list_single_margin">5dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="share_list_drawablePadding">16dp</dimen>
+    <dimen name="share_text">16sp</dimen>
+    <dimen name="share_text_margin">16dp</dimen>
 </resources>

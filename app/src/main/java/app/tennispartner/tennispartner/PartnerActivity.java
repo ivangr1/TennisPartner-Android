@@ -11,9 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -59,6 +57,7 @@ import app.tennispartner.tennispartner.helper.FilterDialog;
 import app.tennispartner.tennispartner.helper.Helper;
 import app.tennispartner.tennispartner.helper.Login;
 import app.tennispartner.tennispartner.models.User;
+
 import com.sendbird.android.SendBird;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
@@ -87,7 +86,6 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
     private ScrollView mContent;
     private SeekBar mDistanceSeekBar;
     private int radius;
-    private DrawerLayout mDrawerLayout;
     private RecyclerView mUserListRecyclerView;
     double lat;
     double lon;
@@ -108,6 +106,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner);
 
@@ -141,7 +140,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.partner_activity_title);
 
-        mDrawerLayout = findViewById(R.id.drawer_layout);
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
@@ -153,32 +152,6 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         nav_header_avatar = hView.findViewById(R.id.nav_header_avatar);
         nav_header_name = hView.findViewById(R.id.nav_header_name);
 
-        // Get currentUser location
-        if (isGooglePlayServicesAvailable(this)) {
-            if (Helper.checkLocationPermission(this)) {
-                mFusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(PartnerActivity.this, new OnSuccessListener<Location>() {
-                            @Override
-                            public void onSuccess(Location location) {
-                                if (location != null) {
-                                    lat = location.getLatitude();
-                                    lon = location.getLongitude();
-
-                                    if (currentUser != null) {
-                                        // Update currentUser location
-                                        geoFirestore.setLocation(currentUser.getUid(), new GeoPoint(lat, lon));
-                                    }
-                                    geoFirestore.queryAtLocation(new GeoPoint(lat, lon), radius)
-                                            .addGeoQueryDataEventListener(PartnerActivity.this);
-                                    showProgress(true);
-                                } else {
-                                    Toast.makeText(PartnerActivity.this, "Cannot get device location", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-            }
-        }
-
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -187,21 +160,6 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
                     }
                 }
         );
-        FloatingActionButton fab = findViewById(R.id.addUsersActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isGooglePlayServicesAvailable(PartnerActivity.this)) {
-                    Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
-                            .setMessage(getString(R.string.invitation_message))
-                            //.setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))
-                            //.setCustomImage(Uri.parse(getString(R.string.invitation_custom_image)))
-                            .setCallToActionText(getString(R.string.invitation_cta))
-                            .build();
-                    startActivityForResult(intent, REQUEST_INVITE);
-                }
-            }
-        });
     }
 
     private void refreshLayout() {
@@ -220,18 +178,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         //super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
 
-        if (requestCode == REQUEST_INVITE) {
-            if (resultCode == RESULT_OK) {
-                // Get the invitation IDs of all sent messages
-                String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
-                for (String id : ids) {
-                    Log.d(TAG, "onActivityResult: sent invitation " + id);
-                }
-            } else {
-                // Sending failed or it was canceled, show failure message to the currentUser
-                Log.d(TAG, "Error!");
-            }
-        } else if (requestCode == RC_SIGN_IN || requestCode == RC_SIGN_IN_CONTINUE) {
+        if (requestCode == RC_SIGN_IN || requestCode == RC_SIGN_IN_CONTINUE) {
             Login.loginResult(this, PartnerActivity.class, requestCode, resultCode, data);
         }
     }
@@ -249,6 +196,34 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         currentUser = mAuth.getCurrentUser();
         navigationView.setCheckedItem(R.id.partner);
 
+        showProgress(true);
+
+        // Get currentUser location
+        if (isGooglePlayServicesAvailable(this)) {
+            if (Helper.checkLocationPermission(this)) {
+                mFusedLocationClient.getLastLocation()
+                        .addOnSuccessListener(PartnerActivity.this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if (location != null) {
+                                    lat = location.getLatitude();
+                                    lon = location.getLongitude();
+
+                                    if (currentUser != null) {
+                                        // Update currentUser location
+                                        geoFirestore.setLocation(currentUser.getUid(), new GeoPoint(lat, lon));
+                                    }
+                                    if (users != null) users.clear();
+                                    geoQuery = geoFirestore.queryAtLocation(new GeoPoint(lat, lon), radius);
+                                    geoQuery.addGeoQueryDataEventListener(PartnerActivity.this);
+                                    if (userAdapter != null) userAdapter.notifyDataSetChanged();
+                                } else {
+                                    Toast.makeText(PartnerActivity.this, "Cannot get device location", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+            }
+        }
         String photoUrl = null;
         int photoInt = R.drawable.ic_user;
         String displayName = getString(R.string.login_text);
@@ -326,9 +301,8 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -360,6 +334,10 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
             startActivity(new Intent(this, InfoActivity.class));
         }
 
+        if (id == R.id.invite_friends) {
+            startActivity(new Intent(this, ShareActivity.class));
+        }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawers();
         return true;
@@ -367,7 +345,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -389,15 +367,13 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
                                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                                     @Override
                                     public void onSuccess(@NonNull Location location) {
-                                        if (location != null) {
-                                            lat = location.getLatitude();
-                                            lon = location.getLongitude();
-                                            if (userAdapter != null) users.clear();
-                                            sharedPref = PartnerActivity.this.getPreferences(Context.MODE_PRIVATE);
-                                            radius = sharedPref.getInt(getString(R.string.partner_radius), getResources().getInteger(R.integer.radius_default));
-                                            geoQuery = geoFirestore.queryAtLocation(new GeoPoint(lat, lon), radius);
-                                            geoQuery.addGeoQueryDataEventListener(PartnerActivity.this);
-                                        }
+                                        lat = location.getLatitude();
+                                        lon = location.getLongitude();
+                                        if (userAdapter != null) users.clear();
+                                        sharedPref = PartnerActivity.this.getPreferences(Context.MODE_PRIVATE);
+                                        radius = sharedPref.getInt(getString(R.string.partner_radius), getResources().getInteger(R.integer.radius_default));
+                                        geoQuery = geoFirestore.queryAtLocation(new GeoPoint(lat, lon), radius);
+                                        geoQuery.addGeoQueryDataEventListener(PartnerActivity.this);
                                     }
                                 });
                     }
@@ -462,7 +438,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
     @Override
     public void onGeoQueryReady() {
         showProgress(false);
-        //geoQuery.removeGeoQueryEventListener(this);
+        geoQuery.removeGeoQueryEventListener(this);
 
         if (users.isEmpty()) {
             mUserListRecyclerView.setVisibility(View.GONE);

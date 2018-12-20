@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -13,6 +14,10 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Launcher" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -29,6 +34,22 @@
         <item name="colorControlActivated">@color/material_lime_a700</item>
         <item name="colorControlHighlight">@color/material_green_a200</item>
         <item name="android:windowBackground">@color/material_green_50</item>
+    </style>
+
+    <style name="ShareText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableEnd">@drawable/ic_right</item>
+        <item name="android:drawableRight">@drawable/ic_right</item>
+        <item name="android:drawablePadding">@dimen/share_list_drawablePadding</item>
+        <item name="android:paddingTop">@dimen/share_text_margin</item>
+        <item name="android:paddingBottom">@dimen/share_text_margin</item>
+        <item name="android:paddingStart">@dimen/share_text_margin</item>
+        <item name="android:paddingLeft">@dimen/share_text_margin</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/share_text</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
 </resources>

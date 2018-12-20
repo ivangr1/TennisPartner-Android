@@ -42,6 +42,8 @@ public class UserDetailActivity extends AppCompatActivity {
     private GameAdapter gameAdapter;
     private String userId;
     private boolean chatButton;
+    private FloatingActionButton fab;
+    private ImageView avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,8 @@ public class UserDetailActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        ImageView avatar = findViewById(R.id.user_detail_avatar);
-        FloatingActionButton fab = findViewById(R.id.chat_fab);
+        avatar = findViewById(R.id.user_detail_avatar);
+        fab = findViewById(R.id.chat_fab);
 
         if (!chatButton || (currentUser != null && currentUser.getUid().equals(userId))) fab.hide();
 
@@ -67,6 +69,11 @@ public class UserDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users").document(userId);
@@ -110,7 +117,6 @@ public class UserDetailActivity extends AppCompatActivity {
             }
         });
     }
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Login.loginResult(this, UserDetailActivity.class, requestCode, resultCode, data);

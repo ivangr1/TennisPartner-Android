@@ -8,7 +8,7 @@
     <string name="suggest_match_date">Suggest match date</string>
     <string name="suggest_match_time">Suggest match time</string>
     <string name="court_title">Choose a court</string>
-    <string name="loading_text">Please wait…</string>
+    <string name="loading_text_search_players">Searching players nearby</string>
     <string name="ask_location_button">Allow</string>
     <string name="reload_button">Reload</string>
     <string name="accept_suggested_match">Accept suggested term</string>
@@ -63,7 +63,7 @@
     <string name="user_detail_age">Age</string>
     <string name="sign_in_cancelled">Sign in cancelled</string>
     <string name="invitation_title">Invite your friends</string>
-    <string name="invitation_message">Get the new Tennis Partner app!</string>
+    <string name="invitation_message">Get the Tennis Partner app</string>
     <string name="invitation_cta">Get Tennis Partner</string>
     <string name="positive_button">@android:string/ok</string>
     <string name="court_succesfully_added">Tennis court successfully added!</string>
@@ -98,4 +98,14 @@
     <string name="about_app">About</string>
     <string name="app_developer">App developer</string>
     <string name="about_developer">I\'m a Android and Java developer from Pula, Croatia</string>
+    <string name="icon_attribution">Icons made by <a href="https://www.freepik.com/">Freepik</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></string>
+    <string name="share_cta">Invite your friends</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="share_smsmail"><![CDATA[Invite via SMS & email]]></string>
+    <string name="share_facebook">Invite via Facebook</string>
+    <string name="share_whatsapp">Invite via WhatsApp</string>
+    <string name="share_link">Copy link</string>
+    <string name="share_more">More options</string>
+    <string name="invitation_sent_toast">Invitation successfully sent!</string>
+    <string name="share_link_copied">Link copied</string>
 </resources>

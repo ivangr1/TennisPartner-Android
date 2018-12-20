@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#42a5f5</color>
-    <color name="colorPrimaryDark">#0077c2</color>
-    <color name="colorAccent">#ffab40</color>
-    <color name="colorAccentDark">#c77c02</color>
+    <color name="colorPrimary">#1976d2</color>
+    <color name="colorPrimaryDark">#004ba0</color>
+    <color name="colorAccent">#FFA737</color>
+    <color name="colorAccentDark">#DC851F</color>
+    <color name="colorSplash">#2196F3</color>
+    <color name="colorShare">#2E4052</color>
 
     <!-- Group Chat -->
     <color name="groupChatBubbleMe">@color/colorPrimaryDark</color>

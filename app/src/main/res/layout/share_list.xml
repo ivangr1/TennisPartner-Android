@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <TextView
+        style="@style/ShareText"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawableStart="@drawable/ic_email"
+        android:text="@string/share_smsmail"
+        android:onClick="inviteSMSmail"
+        />
+
+    <TextView
+        style="@style/ShareText"
+        android:drawableLeft="@drawable/ic_share_facebook"
+        android:drawableStart="@drawable/ic_share_facebook"
+        android:text="@string/share_facebook" />
+
+    <TextView
+        style="@style/ShareText"
+        android:drawableLeft="@drawable/ic_share_whatsapp"
+        android:drawableStart="@drawable/ic_share_whatsapp"
+        android:text="@string/share_whatsapp" />
+
+    <TextView
+        style="@style/ShareText"
+        android:drawableLeft="@drawable/ic_link"
+        android:drawableStart="@drawable/ic_link"
+        android:text="@string/share_link"
+        android:onClick="InviteLink"/>
+
+    <TextView
+        style="@style/ShareText"
+        android:drawableLeft="@drawable/ic_more"
+        android:drawableStart="@drawable/ic_more"
+        android:text="@string/share_more"
+        android:onClick="InviteOther"/>
 </merge>

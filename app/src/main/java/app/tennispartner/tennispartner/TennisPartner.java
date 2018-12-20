@@ -15,6 +15,7 @@ import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 
 import androidx.annotation.NonNull;
+import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 public class TennisPartner extends MultiDexApplication {
@@ -70,6 +71,12 @@ public class TennisPartner extends MultiDexApplication {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(this);
     }
 
     private void createNotificationChannel() {
