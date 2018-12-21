@@ -77,9 +77,6 @@ public class ShareActivity extends AppCompatActivity {
     public void inviteSMSmail(View view) {
         Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
                 .setMessage(getString(R.string.invitation_message))
-                /*.setDeepLink(Uri.parse(getString(R.string.invitation_deep_link)))*/
-                .setCustomImage(Uri.parse(getString(R.string.invitation_custom_image)))
-                .setCallToActionText(getString(R.string.invitation_cta))
                 .build();
         startActivityForResult(intent, REQUEST_INVITE);
     }
@@ -87,7 +84,7 @@ public class ShareActivity extends AppCompatActivity {
     public void InviteOther(View view) {
         ShareCompat.IntentBuilder.from(this)
                 .setType("text/plain")
-                .setText(getString(R.string.invitation_message))
+                .setText(getString(R.string.invitation_message) + "\nhttps://tennispartner.app/get")
                 .startChooser();
     }
 

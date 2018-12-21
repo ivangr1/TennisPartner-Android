@@ -16,7 +16,7 @@
     <string name="camera_dialog_camera">Kamera</string>
     <string name="camera_dialog_gallery">Galerija slika</string>
     <string name="logout">Odjava</string>
-    <string name="partner_activity_title">Igrači u blizini</string>
+    <string name="partner_activity_title">Igrači</string>
     <string name="nav_header_desc">Profil slika</string>
     <string name="info">O aplikaciji</string>
     <string name="location_dialog_title">Lokacija je potrebna</string>
@@ -34,11 +34,10 @@
     <string name="no_internet_connection">Nema mrežne veze</string>
     <string name="unknown_error">Nepoznata greška</string>
     <string name="invitation_title">Pozovite svoje prijatelje</string>
-    <string name="invitation_message">Preuzmite novu Tenis Partner aplikaciju!</string>
-    <string name="invitation_cta">Preuzmi Tenis Partner</string>
+    <string name="invitation_message">Preuzmite Tenis Partnerr</string>
     <string name="login_text">Logiraj se</string>
     <string name="please_wait">Molimo pričekajte…</string>
-    <string name="title_activity_court">Tereni u blizini</string>
+    <string name="court_activity_title">Tereni</string>
     <string name="positive_button">U redu</string>
     <string name="dialog_filter_title">FIltriraj</string>
     <string name="apply_button">Primjeni</string>
@@ -60,7 +59,7 @@
     <string name="no_chats_available">Nema poruka</string>
     <string name="suggest_match_date">Predloži datum meča</string>
     <string name="suggest_match_time">Predloži vrijeme meča</string>
-    <string name="court_title">Izaberite teren</string>
+    <string name="choose_court_title">Izaberite teren</string>
     <string name="loading_text_search_players">Molimo pričekajte…</string>
     <string name="ask_location_button">Dopusti</string>
     <string name="no_location_warning">Trebamo pristup vašoj lokaciji kako bi vam mogli pronaći partnere u blizini</string>

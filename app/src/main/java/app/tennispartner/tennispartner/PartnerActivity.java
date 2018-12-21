@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -74,7 +75,9 @@ import static app.tennispartner.tennispartner.helper.Login.RC_SIGN_IN_CONTINUE;
 import static app.tennispartner.tennispartner.helper.Login.isPhoneUser;
 
 public class PartnerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        GeoQueryDataEventListener, FilterDialog.NoticeDialogListener {
+        BottomNavigationView.OnNavigationItemSelectedListener,
+        GeoQueryDataEventListener,
+        FilterDialog.NoticeDialogListener {
 
     private static final int REQUEST_INVITE = 95;
     private static final String TAG = PartnerActivity.class.getSimpleName();
@@ -103,6 +106,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
     private SwipeRefreshLayout mySwipeRefreshLayout;
     private Button ask_location_button;
     private LinearLayout emptyLocation;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +149,9 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -306,8 +313,14 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.partner) {
+            startActivity(new Intent(this, PartnerActivity.class));
+
+        }
+
         if (id == R.id.courts) {
             startActivity(new Intent(this, CourtActivity.class));
+
         }
 
         if (id == R.id.inbox) {
@@ -437,6 +450,7 @@ public class PartnerActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onGeoQueryReady() {
+        Toast.makeText(this, "onGeoQueryReady fired", Toast.LENGTH_SHORT).show();
         showProgress(false);
         geoQuery.removeGeoQueryEventListener(this);
 

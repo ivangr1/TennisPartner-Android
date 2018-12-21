@@ -31,9 +31,8 @@
         </activity>
         <activity
             android:name=".CourtActivity"
-            android:label="@string/title_activity_court"
-            android:parentActivityName=".PartnerActivity"
-            android:theme="@style/AppTheme" />
+            android:label="@string/court_activity_title"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />

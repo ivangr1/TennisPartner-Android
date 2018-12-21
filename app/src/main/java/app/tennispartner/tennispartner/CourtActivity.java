@@ -1,6 +1,7 @@
 package app.tennispartner.tennispartner;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,7 +37,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
-import app.tennispartner.tennispartner.helper.FilterDialog;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import app.tennispartner.tennispartner.helper.Helper;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
@@ -160,7 +163,17 @@ public class CourtActivity extends AppCompatActivity implements OnMapReadyCallba
 
         radius = getResources().getInteger(R.integer.radius_default);
 
-        if (getCallingActivity() != null) getSupportActionBar().setTitle(R.string.court_title);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.court_activity_title);
+        if (getCallingActivity() != null)
+            getSupportActionBar().setTitle(R.string.choose_court_title);
+
+        DrawerLayout mDrawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         // Construct a FusedLocationProviderClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);

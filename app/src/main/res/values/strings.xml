@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tennis Partner</string>
-    <string name="partner_activity_title">Players nearby</string>
+    <string name="partner_activity_title">Players</string>
     <string name="chat_list_title">Inbox</string>
     <string name="action_messages">Messages</string>
     <string name="no_chats_available">No messages</string>
     <string name="suggest_match_date">Suggest match date</string>
     <string name="suggest_match_time">Suggest match time</string>
-    <string name="court_title">Choose a court</string>
+    <string name="choose_court_title">Choose a court</string>
     <string name="loading_text_search_players">Searching players nearby</string>
     <string name="ask_location_button">Allow</string>
     <string name="reload_button">Reload</string>
@@ -28,7 +28,7 @@
     <string name="add_court">Add</string>
     <string name="apply_button">Apply</string>
     <string name="dialog_filter_title">Filter</string>
-    <string name="title_activity_court">Courts nearby</string>
+    <string name="court_activity_title">Courts</string>
     <string name="please_wait">Please wait…</string>
     <string name="login_text">Log in</string>
     <string name="unknown_error">Unknown error</string>
@@ -63,8 +63,7 @@
     <string name="user_detail_age">Age</string>
     <string name="sign_in_cancelled">Sign in cancelled</string>
     <string name="invitation_title">Invite your friends</string>
-    <string name="invitation_message">Get the Tennis Partner app</string>
-    <string name="invitation_cta">Get Tennis Partner</string>
+    <string name="invitation_message">Get new Tennis Partner app!</string>
     <string name="positive_button">@android:string/ok</string>
     <string name="court_succesfully_added">Tennis court successfully added!</string>
     <string name="invite_members">Invite members</string>
@@ -108,5 +107,4 @@
     <string name="share_more">More options</string>
     <string name="invitation_sent_toast">Invitation successfully sent!</string>
     <string name="share_link_copied">Link copied</string>
-    <string name="invitation_custom_image" translatable="false">https://tennispartner.app/img/logo_512x512_transparent.jpg</string>
 </resources>
