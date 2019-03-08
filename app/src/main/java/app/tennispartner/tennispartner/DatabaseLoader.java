@@ -1,12 +1,11 @@
-package app.tennispartner.tennispartner;
+package app.tennispartner.tenispartner;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.GeoPoint;
-import app.tennispartner.tennispartner.models.User;
+import app.tennispartner.tenispartner.models.User;
 
 import org.imperiumlabs.geofirestore.GeoFirestore;
 
@@ -17,40 +16,39 @@ public class DatabaseLoader {
     // Users
 
     private static String[] imena = {
-            "Ivan",
-            "Marko",
+            "John",
+            "Mary",
             "Robert",
-            "Mario",
-            "Nikola",
-            "Stefano",
-            "Nataša",
-            "Goran",
-            "Ljupko",
-            "Andrea"
+            "Nick",
+            "Wayne",
+            "Gregory",
+            "Paul",
+            "Bob",
+            "Hanna",
+            "Stephen"
     };
 
     private static String[] prezimena = {
-            "Milotić",
-            "Duras",
-            "Grubišić",
-            "Horvat",
-            "Buljubašić",
-            "Đoser",
-            "Tadić",
-            "Gostič",
-            "Duspara",
-            "Džeko"
+            "Doe",
+            "Poppins",
+            "Henry",
+            "Sander",
+            "Gates",
+            "Baily",
+            "Tucker",
+            "March",
+            "Perch",
+            "Apple"
     };
     private static String[] fbId = {
-            "100005867370522",
-            "100009971412032",
-            "1130708038",
-            "1494042067",
-            "100004025199955",
-            "100002097552388",
-            "1319388263",
-            "100008107006027",
-            "1191952958"
+            "100034663716283",
+            "100034553803561",
+            "100034523895609",
+            "100034400243694",
+            "100034701723740",
+            "100034626728826",
+            "100034593280904",
+            "100034548853919"
     };
 
     private static double[][] points = new double[][]{
@@ -70,10 +68,17 @@ public class DatabaseLoader {
     private static String[] birthday = {
             "09/18/1990",
             "08/11/1958",
-            "09/06/1957",
-            "09/05/1938",
-            "09/12/1926",
+            "09/06/1977",
+            "09/05/1998",
+            "09/12/1968",
             "01/01/2000"
+    };
+
+    private static Long[] lastLogin = {
+            System.currentTimeMillis(),
+            1520357089000L,
+            1551893089000L,
+            1488821089000L
     };
     /*
     private static String[] provider = {
@@ -100,15 +105,11 @@ public class DatabaseLoader {
 
     public static void loadDatabase() {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
-        firestore.setFirestoreSettings(settings);
 
         CollectionReference geoFirestoreRef = firestore.collection("users");
         GeoFirestore geoFirestore = new GeoFirestore(geoFirestoreRef);
 
-        IntStream.range(1, 50).forEach(i -> {
+        IntStream.range(1, 10).forEach(i -> {
 
             String im = imena[i % imena.length];
             String prez = prezimena[i % prezimena.length];
@@ -116,8 +117,9 @@ public class DatabaseLoader {
             String b = birthday[i % birthday.length];
             String avatarUrl = String.format(User.FB_AVATAR, fb);
             double[] l = points[i % points.length];
+            long last = lastLogin[i % lastLogin.length];
 
-            User u = new User("+3858603928", im, prez, "male", b, "facebook.com", fb, avatarUrl);
+            User u = new User("+3858603928", im, prez, "male", b, "facebook.com", fb, avatarUrl, last);
             /*IntStream.range(1, 10).forEach(j -> {
                 Long tm = time[j % time.length];
                 Long dr = duration[j % duration.length];
@@ -128,7 +130,8 @@ public class DatabaseLoader {
             firestore.collection("users").add(u).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
                 public void onSuccess(DocumentReference documentReference) {
-                    geoFirestore.setLocation(documentReference.getId(), new GeoPoint(l[0], l[1]));
+                    String docRef = documentReference.getId();
+                    geoFirestore.setLocation(docRef, new GeoPoint(l[0], l[1]));
 
 
                     //documentReference.collection("games")

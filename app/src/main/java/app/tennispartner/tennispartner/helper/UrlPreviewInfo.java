@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import org.json.JSONException;
 import org.json.JSONObject;

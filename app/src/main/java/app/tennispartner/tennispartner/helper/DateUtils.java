@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

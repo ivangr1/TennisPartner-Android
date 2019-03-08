@@ -1,11 +1,10 @@
-package app.tennispartner.tennispartner;
+package app.tennispartner.tenispartner;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 
@@ -27,7 +26,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jakewharton.threetenabp.AndroidThreeTen;
@@ -39,45 +37,30 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
@@ -182,6 +165,8 @@ public class LoginActivity extends AppCompatActivity {
                     .apply(RequestOptions.circleCropTransform())
                     .into(mLoginAvatar);
             avatarPath = image.getPath();
+            findViewById(R.id.loginImageText).setVisibility(View.GONE);
+            mLoginAvatar.setAlpha(1f);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -347,6 +332,7 @@ public class LoginActivity extends AppCompatActivity {
             user.put("gender", mGender);
             user.put("birthday", mBirthday);
             user.put("phoneNumber", currentUser.getPhoneNumber());
+            user.put("lastLogin", currentUser.getMetadata().getLastSignInTimestamp());
 
             Uri file = Uri.fromFile(new File(mAvatar));
             FirebaseStorage storage = FirebaseStorage.getInstance();

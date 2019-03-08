@@ -1,6 +1,7 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
@@ -29,19 +30,22 @@ public class ConnectionManager {
                 handler.onConnected(false);
             }
         } else if (SendBird.getConnectionState() == SendBird.ConnectionState.CLOSED) { // push notification or system kill
-            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            SendBird.connect(userId, new SendBird.ConnectHandler() {
-                @Override
-                public void onConnected(User user, SendBirdException e) {
-                    if (e != null) {
-                        return;
-                    }
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if(currentUser != null) {
+                String userId = currentUser.getUid();
+                SendBird.connect(userId, new SendBird.ConnectHandler() {
+                    @Override
+                    public void onConnected(User user, SendBirdException e) {
+                        if (e != null) {
+                            return;
+                        }
 
-                    if (handler != null) {
-                        handler.onConnected(false);
+                        if (handler != null) {
+                            handler.onConnected(false);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 

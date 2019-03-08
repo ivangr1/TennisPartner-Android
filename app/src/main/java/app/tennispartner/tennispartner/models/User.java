@@ -1,9 +1,9 @@
-package app.tennispartner.tennispartner.models;
+package app.tennispartner.tenispartner.models;
 
 import java.util.List;
 
 public class User {
-    public static final String FB_AVATAR = "http://graph.facebook.com/%s/picture?width=300";
+    public static final String FB_AVATAR = "https://graph.facebook.com/%s/picture?width=300";
     private String id;
     private String phoneNumber;
     private String firstName;
@@ -13,13 +13,14 @@ public class User {
     private String provider;
     private String providerId;
     private String avatarUrl;
+    private long lastLogin;
     private String g;
     private List<Double> l;
 
     public User() {
     }
 
-    public User(String phoneNumber, String firstName, String lastName, String gender, String birthday, String provider, String providerId, String avatarUrl) {
+    public User(String phoneNumber, String firstName, String lastName, String gender, String birthday, String provider, String providerId, String avatarUrl, long lastLogin) {
         this.phoneNumber = phoneNumber;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +29,7 @@ public class User {
         this.provider = provider;
         this.providerId = providerId;
         this.avatarUrl = avatarUrl;
+        this.lastLogin = lastLogin;
     }
 
     public String getId() {
@@ -66,6 +68,14 @@ public class User {
 
     public String getProvider() {
         return provider;
+    }
+
+    public long getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(long lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     public void setProvider(String provider) {
@@ -109,11 +119,19 @@ public class User {
         this.birthday = birthday;
     }
 
+    public String getG() {
+        return g;
+    }
+
     public void setG(String g) {
         this.g = g;
     }
 
     public List<Double> getL() {
         return l;
+    }
+
+    public void setL(List<Double> l) {
+        this.l = l;
     }
 }

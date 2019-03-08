@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import app.tennispartner.tennispartner.R;
+import app.tennispartner.tenispartner.R;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;

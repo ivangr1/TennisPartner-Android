@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner;
+package app.tennispartner.tenispartner;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

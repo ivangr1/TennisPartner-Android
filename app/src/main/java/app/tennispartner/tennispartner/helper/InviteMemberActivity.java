@@ -1,12 +1,12 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import app.tennispartner.tennispartner.GroupChatActivity;
-import app.tennispartner.tennispartner.R;
+import app.tennispartner.tenispartner.GroupChatActivity;
+import app.tennispartner.tenispartner.R;
 import com.sendbird.android.GroupChannel;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;

@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.adapters;
+package app.tennispartner.tenispartner.adapters;
 
 import android.content.Context;
 
@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import app.tennispartner.tennispartner.R;
-import app.tennispartner.tennispartner.databinding.GameListItemBinding;
-import app.tennispartner.tennispartner.models.Game;
-import app.tennispartner.tennispartner.models.User;
+import app.tennispartner.tenispartner.R;
+import app.tennispartner.tenispartner.databinding.GameListItemBinding;
+import app.tennispartner.tenispartner.models.Game;
+import app.tennispartner.tenispartner.models.User;
 
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;

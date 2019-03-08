@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.models;
+package app.tennispartner.tenispartner.models;
 
 public class Game {
 

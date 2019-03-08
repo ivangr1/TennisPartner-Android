@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner;
+package app.tennispartner.tenispartner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import app.tennispartner.tennispartner.adapters.GroupChannelListAdapter;
-import app.tennispartner.tennispartner.helper.ConnectionManager;
-import app.tennispartner.tennispartner.helper.Helper;
+import app.tennispartner.tenispartner.adapters.GroupChannelListAdapter;
+import app.tennispartner.tenispartner.helper.ConnectionManager;
+import app.tennispartner.tenispartner.helper.Helper;
 import com.sendbird.android.BaseChannel;
 import com.sendbird.android.BaseMessage;
 import com.sendbird.android.GroupChannel;

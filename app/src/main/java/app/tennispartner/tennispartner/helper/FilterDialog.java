@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,28 +10,29 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import app.tennispartner.tennispartner.R;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
+import app.tennispartner.tenispartner.MainActivity;
+import app.tennispartner.tenispartner.R;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import app.tennispartner.tenispartner.models.SharedView;
+import org.jetbrains.annotations.NotNull;
 
 public class FilterDialog extends DialogFragment {
 
     private int radius;
-    private TextView mDistanceCounter;
     private SharedPreferences sharedPref;
+    private MainActivity mainActivity;
+    private SharedView viewModel;
 
-    public interface NoticeDialogListener {
-        void onDialogPositiveClick(int radius);
-    }
-
-    NoticeDialogListener mListener;
-    private SeekBar mDistanceSeekBar;
-
+    @NotNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        viewModel = ViewModelProviders.of(mainActivity).get(SharedView.class);
 
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -40,8 +41,8 @@ public class FilterDialog extends DialogFragment {
 
         View filter_view = inflater.inflate(R.layout.filter_view, null);
 
-        mDistanceSeekBar = filter_view.findViewById(R.id.distanceSeekBar);
-        mDistanceCounter = filter_view.findViewById(R.id.distanceCounter);
+        SeekBar mDistanceSeekBar = filter_view.findViewById(R.id.distanceSeekBar);
+        TextView mDistanceCounter = filter_view.findViewById(R.id.distanceCounter);
         radius = sharedPref.getInt(getString(R.string.partner_radius), getResources().getInteger(R.integer.radius_default));
         mDistanceSeekBar.setProgress(radius);
         mDistanceCounter.setText(getString(R.string.distance_text_value, radius));
@@ -53,7 +54,7 @@ public class FilterDialog extends DialogFragment {
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putInt(getString(R.string.partner_radius), radius);
                         editor.apply();
-                        mListener.onDialogPositiveClick(radius);
+                        viewModel.setRadius(radius);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -85,16 +86,8 @@ public class FilterDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        // Verify that the host activity implements the callback interface
-        try {
-            // Instantiate the NoticeDialogListener so we can send events to the host
-            mListener = (NoticeDialogListener) context;
-        } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(context.toString()
-                    + " must implement NoticeDialogListener");
-        }
+        mainActivity = (MainActivity) context;
     }
 }

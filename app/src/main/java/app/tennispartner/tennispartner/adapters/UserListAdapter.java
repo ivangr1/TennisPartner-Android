@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.adapters;
+package app.tennispartner.tenispartner.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,12 +9,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import com.bumptech.glide.Glide;
-import com.google.android.material.card.MaterialCardView;
-import app.tennispartner.tennispartner.R;
-import app.tennispartner.tennispartner.UserDetailActivity;
-import app.tennispartner.tennispartner.helper.ImageUtils;
-import app.tennispartner.tennispartner.helper.MemberListActivity;
+import app.tennispartner.tenispartner.R;
+import app.tennispartner.tenispartner.UserDetailActivity;
 import com.sendbird.android.User;
 
 import java.util.ArrayList;
@@ -68,7 +66,7 @@ public class UserListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     private class UserHolder extends RecyclerView.ViewHolder {
-        private MaterialCardView materialCard;
+        private CardView materialCard;
         private View view;
         private TextView nameText;
         private ImageView profileImage;

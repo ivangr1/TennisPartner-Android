@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.adapters;
+package app.tennispartner.tenispartner.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,11 +17,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import app.tennispartner.tennispartner.R;
-import app.tennispartner.tennispartner.helper.DateUtils;
-import app.tennispartner.tennispartner.helper.FileUtils;
-import app.tennispartner.tennispartner.helper.TextUtils;
-import app.tennispartner.tennispartner.helper.TypingIndicator;
+import app.tennispartner.tenispartner.R;
+import app.tennispartner.tenispartner.helper.DateUtils;
+import app.tennispartner.tenispartner.helper.FileUtils;
+import app.tennispartner.tenispartner.helper.TextUtils;
+import app.tennispartner.tenispartner.helper.TypingIndicator;
 import com.sendbird.android.AdminMessage;
 import com.sendbird.android.BaseChannel;
 import com.sendbird.android.BaseMessage;

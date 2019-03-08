@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 
 import android.app.Dialog;
@@ -9,8 +9,8 @@ import android.app.Fragment;
 import android.text.format.DateFormat;
 import android.widget.TimePicker;
 
-import app.tennispartner.tennispartner.CourtActivity;
-import app.tennispartner.tennispartner.R;
+import app.tennispartner.tenispartner.CourtFragment;
+import app.tennispartner.tenispartner.R;
 
 import java.util.Calendar;
 
@@ -49,7 +49,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         date[3] = hourOfDay;
         date[4] = minute;
-        Intent intent = new Intent(getActivity(), CourtActivity.class);
+        Intent intent = new Intent(getActivity(), CourtFragment.class);
         intent.putExtra("dateTime", date);
         getActivity().startActivityForResult(intent, RC_COURT_PICK);
     }

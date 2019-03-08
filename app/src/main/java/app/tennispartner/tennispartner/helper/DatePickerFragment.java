@@ -1,11 +1,11 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.DatePicker;
 
-import app.tennispartner.tennispartner.R;
+import app.tennispartner.tenispartner.R;
 
 import java.util.Calendar;
 

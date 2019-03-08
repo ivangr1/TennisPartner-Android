@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner;
+package app.tennispartner.tenispartner;
 
 import android.content.Intent;
 
@@ -24,10 +24,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import app.tennispartner.tennispartner.adapters.GameAdapter;
-import app.tennispartner.tennispartner.databinding.ActivityUserDetailBinding;
-import app.tennispartner.tennispartner.helper.Helper;
-import app.tennispartner.tennispartner.helper.Login;
+import app.tennispartner.tenispartner.adapters.GameAdapter;
+import app.tennispartner.tenispartner.databinding.ActivityUserDetailBinding;
+import app.tennispartner.tenispartner.helper.Helper;
+import app.tennispartner.tenispartner.helper.Login;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.sendbird.android.GroupChannel;
 import com.sendbird.android.SendBirdException;
@@ -37,7 +37,7 @@ import java.util.Arrays;
 public class UserDetailActivity extends AppCompatActivity {
 
     private FirebaseUser currentUser;
-    private app.tennispartner.tennispartner.models.User userInfo;
+    private app.tennispartner.tenispartner.models.User userInfo;
     private ActivityUserDetailBinding binding;
     private GameAdapter gameAdapter;
     private String userId;
@@ -80,7 +80,7 @@ public class UserDetailActivity extends AppCompatActivity {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                userInfo = documentSnapshot.toObject(app.tennispartner.tennispartner.models.User.class);
+                userInfo = documentSnapshot.toObject(app.tennispartner.tenispartner.models.User.class);
                 binding.setUser(userInfo);
                 Glide.with(getApplicationContext())
                         .load(userInfo != null ? userInfo.getAvatarUrl() : null)

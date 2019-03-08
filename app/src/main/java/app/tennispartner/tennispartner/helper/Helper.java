@@ -1,4 +1,4 @@
-package app.tennispartner.tennispartner.helper;
+package app.tennispartner.tenispartner.helper;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -11,9 +11,10 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.view.View;
 
+import androidx.core.app.ShareCompat;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import app.tennispartner.tennispartner.R;
+import app.tennispartner.tenispartner.R;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.Period;
@@ -29,7 +30,12 @@ import androidx.core.content.ContextCompat;
 
 public class Helper {
 
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
+    private static final int SECOND_MILLIS = 1000;
+    private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
+    private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
+    private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
 
     public static int calculateAge(String birthDate) {
         if (birthDate != null) {
@@ -62,13 +68,7 @@ public class Helper {
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the currentUser *asynchronously* -- don't block
-                // this thread waiting for the currentUser's response! After the currentUser
-                // sees the explanation, try again to request the permission.
+                // No explanation needed, we can request the permission.
                 new AlertDialog.Builder(context)
                         .setTitle(R.string.location_dialog_title)
                         .setMessage(R.string.location_dialog_description)
@@ -81,16 +81,9 @@ public class Helper {
                                         MY_PERMISSIONS_REQUEST_LOCATION);
                             }
                         })
+                        .setCancelable(false)
                         .create()
                         .show();
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions((Activity) context,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
             return false;
         } else {
             return true;
@@ -131,4 +124,40 @@ public class Helper {
         return true;
     }
 
+    public static void inviteFriends(Activity activity) {
+        ShareCompat.IntentBuilder.from(activity)
+                .setChooserTitle(R.string.invitation_title)
+                .setText(activity.getString(R.string.invitation_message))
+                .setType("text/plain")
+                .startChooser();
+    }
+
+    public static String calculateDifference(long time, Context context) {
+            if (time < 1000000000000L) {
+                // if timestamp given in seconds, convert to millis
+                time *= 1000;
+            }
+
+            long now = System.currentTimeMillis();
+            if (time > now || time <= 0) {
+                return null;
+            }
+
+            final long diff = now - time;
+            if (diff < MINUTE_MILLIS) {
+                return context.getString(R.string.just_now);
+            } else if (diff < 2 * MINUTE_MILLIS) {
+                return context.getString(R.string.minute_ago);
+            } else if (diff < 50 * MINUTE_MILLIS) {
+                return diff / MINUTE_MILLIS + " " + context.getString(R.string.minutes_ago);
+            } else if (diff < 90 * MINUTE_MILLIS) {
+                return context.getString(R.string.hour_ago);
+            } else if (diff < 24 * HOUR_MILLIS) {
+                return diff / HOUR_MILLIS + " " + context.getString(R.string.hours_ago);
+            } else if (diff < 48 * HOUR_MILLIS) {
+                return context.getString(R.string.yesterday);
+            } else {
+                return diff / DAY_MILLIS + " " + context.getString(R.string.days_ago);
+            }
+    }
 }
